@@ -5,6 +5,7 @@ const ProductModel=require("./Models/Product.Schema")
 const BookMarkModel=require("./Models/Bookmark.schema")
 const app = express();
 app.use(cors());
+const PORT=process.env.PORT||8080
 app.use(express.json());
 app.get("/",async (req,res)=>{
     const {filter}=req.query
@@ -45,8 +46,8 @@ app.post("/bookmark",async (req,res)=>{
 })
 
 app.delete("/delete/:id",async (req,res)=>{
-    const {id}=req.params
-    console.log(id)
+  
+ 
     //res.send("hello")
     try{
        await ProductModel.findByIdAndDelete({_id:id})
@@ -61,7 +62,7 @@ mongoose
     "mongodb+srv://sharun:123@atlascluster.qwa1fxi.mongodb.net/mock11?retryWrites=true&w=majority"
   )
   .then(() => {
-    app.listen(8080, () => {
+    app.listen(PORT, () => {
       console.log("Your app is running now 8080");
     });
   });
